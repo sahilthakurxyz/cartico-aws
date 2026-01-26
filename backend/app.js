@@ -23,14 +23,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     // origin: ["https://your-personal-shop.vercel.app"],
-    origin: [process.env.FRONTEND_URL],
-    // origin: ["https://cartico-ew-payw.vercel.app"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
-    optionsSuccessStatus: 204,
+    // origin: ["https://cartico-ew-payw.vercel.app"],
+    methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+
+    // optionsSuccessStatus: 204,
   }),
 );
-app.options("*", cors());
+app.options("*", cors({ origin: process.env.FRONTEND_URL }));
 app.use(
   fileUpload({
     useTempFiles: true,
