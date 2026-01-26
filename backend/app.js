@@ -28,13 +28,14 @@ app.use(
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 204,
-  })
+  }),
 );
+app.options("*", cors());
 app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "temp/directory",
-  })
+  }),
 );
 // routers api's
 app.use("/api/ecommerce/v1", productRouter);
