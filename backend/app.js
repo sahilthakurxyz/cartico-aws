@@ -15,9 +15,6 @@ const fileUpload = require("express-fileupload");
 //   require("dotenv").config({ path: "backend/config/.env" });
 // }
 
-console.log(" THIS IS BRANCE AUTH V2");
-console.log(" THIS IS BRANCE AUTH V2");
-
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
