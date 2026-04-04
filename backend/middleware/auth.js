@@ -13,7 +13,7 @@ const isAuthenticatedUser = handleAsyncError(async (req, res, next) => {
 
     if (Date.now() >= decodedData.exp * 1000) {
       return next(
-        new ErrorHandler("Your session has expired. Please login again.", 401)
+        new ErrorHandler("Your session has expired. Please login again.", 401),
       );
     }
     req.user = await User.findById(decodedData.id);
@@ -21,7 +21,7 @@ const isAuthenticatedUser = handleAsyncError(async (req, res, next) => {
   } catch (error) {
     // Handle invalid or expired token errors
     return next(
-      new ErrorHandler("Invalid Authentication. Please login again.", 401)
+      new ErrorHandler("Invalid Authentication. Please login again.", 401),
     );
   }
 });
@@ -32,8 +32,8 @@ const authoriseRoles = (...roles) => {
       return next(
         new ErrorHandler(
           `Role : ${req.user.role} is not allowed to access this resource`,
-          403
-        )
+          403,
+        ),
       );
     }
 

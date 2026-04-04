@@ -80,7 +80,7 @@ userSchema.methods.generateResetPassword = function () {
     // Set resetPasswordExpire to current date + 15 minutes
     this.resetPasswordExpire = new Date();
     this.resetPasswordExpire.setMinutes(
-      this.resetPasswordExpire.getMinutes() + 15
+      this.resetPasswordExpire.getMinutes() + 15,
     );
     return resetToken;
   } catch (error) {

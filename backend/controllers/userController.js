@@ -18,7 +18,7 @@ exports.registerUser = handleAsyncOperation(async (req, res, next) => {
       folder: "avatars",
       width: 150,
       crop: "scale",
-    }
+    },
   );
 
   const { name, email, password } = req.body;
@@ -120,8 +120,8 @@ exports.resetPassword = handleAsyncOperation(async (req, res, next) => {
       return next(
         new ErrorHandler(
           "Reset Password Token is Invalid or has been expired",
-          400
-        )
+          400,
+        ),
       );
     }
     if (req.body.password !== req.body.confirmPassword) {
@@ -158,7 +158,7 @@ exports.updatePassword = handleAsyncOperation(async (req, res, next) => {
   }
   if (req.body.oldPassword === req.body.newPassword) {
     return next(
-      new ErrorHandler("Please Change your Password You Entered Same as Old")
+      new ErrorHandler("Please Change your Password You Entered Same as Old"),
     );
   }
   const user = await User.findById(req.user.id).select("+password");
@@ -205,7 +205,7 @@ exports.updateMyProfile = handleAsyncOperation(async (req, res, next) => {
           folder: "avatars",
           width: 150,
           crop: "scale",
-        }
+        },
       );
       newUserData.avatar = {
         public_id: myCloud.public_id,
@@ -288,7 +288,10 @@ exports.deleteUserProfile = handleAsyncOperation(async (req, res, next) => {
 
   if (!user) {
     return next(
-      new ErrorHandler(`User does not exist with this id:${req.params.id}`, 404)
+      new ErrorHandler(
+        `User does not exist with this id:${req.params.id}`,
+        404,
+      ),
     );
   }
   // we delete here user Images on cloudnary

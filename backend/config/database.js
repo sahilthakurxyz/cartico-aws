@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-console.log(process.env.DB_URI, "db");
+// console.log(process.env.DB_URI, "db");
 const connectDB = async () => {
   await mongoose.connect(process.env.DB_URI).then((data) => {
     console.log(`database connected at : ${data.connection.host} `);

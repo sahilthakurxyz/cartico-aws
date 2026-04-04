@@ -23,7 +23,7 @@ const sendToken = (user, statusCode, res) => {
     success: true,
     user,
     token,
-    auth: true,                                                                                                                                                                                                                                                                                                                                                 
+    auth: true,
   });
 };
 
