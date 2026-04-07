@@ -14,6 +14,7 @@ const {
   deleteUserProfile,
 } = require("../controllers/userController");
 const { isAuthenticatedUser, authoriseRoles } = require("../middleware/auth");
+const { refreshTokenFun } = require("../utils/refreshToken");
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.route("/register").post(registerUser);
 router.route("/loginuser").post(loginUser);
 router.route("/password/forgot").post(forgotPassword);
 router.route("/logoutuser").get(logOutUser);
+router.route("/refresh/token").get(refreshTokenFun);
 router.route("/reset/password/:token").put(resetPassword);
 router.route("/profile").get(isAuthenticatedUser, getMyProfile);
 router.route("/password/update").put(isAuthenticatedUser, updatePassword);

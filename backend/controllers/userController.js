@@ -22,7 +22,6 @@ exports.registerUser = handleAsyncOperation(async (req, res, next) => {
   );
 
   const { name, email, password } = req.body;
-
   const user = await User.create({
     name,
     email,
@@ -56,10 +55,8 @@ exports.loginUser = handleAsyncOperation(async (req, res, next) => {
 });
 // Logout the User
 exports.logOutUser = handleAsyncOperation(async (req, res, next) => {
-  res.cookie("token", null, {
-    expires: new Date(Date.now()),
-    httpOnly: true,
-  });
+  res.clearCookie("accessToken");
+  res.clearCookie("refreshToken");
   res.status(200).json({
     success: true,
     message: "logged Out",

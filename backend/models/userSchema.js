@@ -37,6 +37,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  refreshToken: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -55,11 +58,11 @@ userSchema.pre("save", async function (next) {
 });
 
 // JWT Token
-userSchema.methods.getJWTToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
-};
+// userSchema.methods.getJWTToken = function () {
+//   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+//     expiresIn: process.env.JWT_EXPIRE,
+//   });
+// };
 
 // Comparing Password
 userSchema.methods.comparePassword = async function (enteredPassword) {
